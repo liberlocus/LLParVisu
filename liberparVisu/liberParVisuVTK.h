@@ -32,17 +32,13 @@ protected:
     int _mpi_rank;
     int _mpi_size;
 
-
 protected:
 
     string getParallelFileName();
     void parallelWriteFile();
-
     void fileCreation();
-//    string getIndividualFileName();
-//
+
 public:
-    //c_ParVTK(string fileName, int nodeNum, float *x, float *y, float *z, int cellNum, int nodePerCell, int **cellConnectivity, char ** varName, int varSize, float **varMatrix, int mpi_rank, int mpi_size): c_VTK(fileName, nodeNum, x, y, z, cellNum, nodePerCell, cellConnectivity, varName, varSize, varMatrix);
     c_ParVTK(string fileName, int nodeNum, float *x, float *y, float *z, int cellNum, int nodePerCell, int **cellConnectivity, char ** varName, int varSize, float **varMatrix, int mpi_rank, int mpi_size);
     ~c_ParVTK();
     void doAll();
