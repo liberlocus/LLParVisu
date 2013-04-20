@@ -1,7 +1,6 @@
-#ifndef LIBERPARVISUVTK_CPP
-#define LIBERPARVISUVTK_CPP
-
 #include "liberParVisuVTK.h"
+
+#include <string>
 
 c_ParVTK::c_ParVTK(string fileName, int nodeNum, float *x, float *y, float *z, int cellNum, int nodePerCell, int **cellConnectivity, char ** varName, int varSize, float **varMatrix, int mpi_rank, int mpi_size) : c_VTK(fileName, nodeNum, x, y, z, cellNum, nodePerCell, cellConnectivity, varName, varSize, varMatrix){
 
@@ -49,6 +48,39 @@ void c_ParVTK::doAll(){
 
 }
 
+string c_ParVTK::getIndividualFileName(){
+
+    string f1, f2, f3, f4, ff;
+
+    f1 = _fileName;
+    f2 = "_";
+    stringstream ss;
+    ss << _mpi_rank;
+    f3 = ss.str();
+//    f3 = to_string(_mpi_rank); // Cmake doesnt work with -std=c++11
+    f4 = ".vtu";
+
+    ff = f1 + f2 + f3 + f4;
+    return ff;
+
+}
+
+void c_ParVTK::writeIndividualFile(){
+
+    _writer = vtkSmartPointer<vtkXMLUnstructuredGridWriter>::New();
+
+    string fileName = getIndividualFileName();
+    _writer->SetFileName(fileName.c_str());
+
+#if VTK_MAJOR_VERSION <= 5
+  _writer->SetInput(_unstructuredGrid);
+#else
+  _writer->SetInputData(_unstructuredGrid);
+#endif
+  _writer->Write();
+
+}
+
 string c_ParVTK::getParallelFileName(){
 
     string f1, f2, ff;
@@ -86,9 +118,7 @@ void c_ParVTK::fileCreation(){
     createCells();
     createCellCenterData();
     createGrid();
-    writeFile();
+    writeIndividualFile();
     parallelWriteFile();
 
 }
-
-#endif

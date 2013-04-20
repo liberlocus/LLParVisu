@@ -3,24 +3,11 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
-#include <vtkVersion.h>
-#include <vtkSmartPointer.h>
-#include <vtkTetra.h>
-#include <vtkVoxel.h>
-#include <vtkCellArray.h>
-#include <vtkCellData.h>
-#include <vtkXMLUnstructuredGridReader.h>
-#include <vtkDataSetMapper.h>
-#include <vtkActor.h>
 #include <vtkXMLPUnstructuredGridWriter.h>
-#include <vtkXMLUnstructuredGridWriter.h>
-#include <vtkUnstructuredGrid.h>
-#include <vtkPointData.h>
-#include <vtkVertexGlyphFilter.h>
-#include <vtkDoubleArray.h>
 
-#include "liberVisuOut.h"
+#include "liberVisu.h"
 
 using namespace std;
 
@@ -34,7 +21,9 @@ protected:
 
 protected:
 
+    string getIndividualFileName();
     string getParallelFileName();
+    void writeIndividualFile();
     void parallelWriteFile();
     void fileCreation();
 

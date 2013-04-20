@@ -1,9 +1,8 @@
-#include "liberParOut.h"
+#include "liberParVisu.h"
 
 using namespace std;
 int main(int argc, char **argv){
 //int main(){
-
 
   const char *fileName = "mySolution" ;
   char *gridName = "Unstructered" ;
@@ -100,7 +99,7 @@ int main(int argc, char **argv){
 
   /*define cell distribution among processors.*/
   
-  liberOut(fileName,gridName, gridType,topoType, cellNum, nodePerCell,nodeNum,varSize, varName, varType, varMatrix,passed_x, passed_y, passed_z,cells);
+  liberVisuVTK(fileName, nodeNum, passed_x, passed_y, passed_z, cellNum, nodePerCell, cells, varName, varSize, varMatrix);
 
 //  writeParallelHDF5();
 //delete allocated arrays

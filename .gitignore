@@ -1,4 +1,6 @@
 *~
 *.swp
-*build
-*old
+*build*
+*old*
+*.o
+*.x
