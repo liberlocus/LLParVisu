@@ -4,7 +4,7 @@
 
 c_ParVTK::c_ParVTK(string fileName, int nodeNum, float *x, float *y, float *z, int cellNum, int nodePerCell, int **cellConnectivity, char ** varName, int varSize, float **varMatrix, int mpi_rank, int mpi_size) : c_VTK(fileName, nodeNum, x, y, z, cellNum, nodePerCell, cellConnectivity, varName, varSize, varMatrix){
 
-//  Related to MPI
+// Related to MPI
 
      _mpi_rank = mpi_rank;
      _mpi_size = mpi_size;
@@ -14,17 +14,17 @@ c_ParVTK::c_ParVTK(string fileName, int nodeNum, float *x, float *y, float *z, i
 c_ParVTK::~c_ParVTK(){
 
   
-//    delete [] _x;
-//    _x = NULL;
+// delete [] _x;
+// _x = NULL;
 //
-//    delete [] _y;
-//    _y = NULL;
+// delete [] _y;
+// _y = NULL;
 //
-//    delete [] _z;
-//    _z = NULL;
+// delete [] _z;
+// _z = NULL;
 
     for(int i=0; i<_cellNum; i++){
-        delete []  _cellConnectivity[i];
+        delete [] _cellConnectivity[i];
         _cellConnectivity[i] = NULL;
     }
     delete [] _cellConnectivity;
@@ -34,7 +34,7 @@ c_ParVTK::~c_ParVTK(){
     _varName = NULL;
 
     for(int i=0; i<_varSize; i++){
-        delete []  _varMatrix[i];
+        delete [] _varMatrix[i];
         _varMatrix[i] = NULL;
     }
     delete [] _varMatrix;
@@ -57,7 +57,7 @@ string c_ParVTK::getIndividualFileName(){
     stringstream ss;
     ss << _mpi_rank;
     f3 = ss.str();
-//    f3 = to_string(_mpi_rank); // Cmake doesnt work with -std=c++11
+// f3 = to_string(_mpi_rank); // Cmake doesnt work with -std=c++11
     f4 = ".vtu";
 
     ff = f1 + f2 + f3 + f4;

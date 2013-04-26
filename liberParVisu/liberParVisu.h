@@ -18,17 +18,17 @@ using namespace std;
 
 //Serial
 
-void liberVisuVTK(string fileName, int nodeNum, float *x, float *y, float *z, int cellNum, int nodePerCell, int **cellConMatrix, char** varName, int varSize, float **varMatrix);
+//void liberVisuVTK(string fileName, int nodeNum, float *x, float *y, float *z, int cellNum, int nodePerCell, int **cellConMatrix, char** varName, int varSize, float **varMatrix);
 
-//void liberParVisuVTK(string fileName, int nodeNum, float *x, float *y, float *z, int cellNum, int nodePerCell, int **cellConMatrix, char** varName, int varSize, float **varMatrix){
-//
-//    c_ParVTK *ParVTK = new c_ParVTK(fileName, nodeNum, x, y, z, cellNum, nodePerCell, cellConMatrix, varName, varSize, varMatrix);
-//    ParVTK->doAll();
-////    delete VTK;
-//
-//    cout << "Parallel VTK file is created." << '\n';
-//
-//}
+void liberParVisuVTK(string fileName, int nodeNum, float *x, float *y, float *z, int cellNum, int nodePerCell, int **cellConMatrix, char** varName, int varSize, float **varMatrix, int mpiRank, int mpiSize){
+
+    c_ParVTK *ParVTK = new c_ParVTK(fileName, nodeNum, x, y, z, cellNum, nodePerCell, cellConMatrix, varName, varSize, varMatrix, mpiRank, mpiSize);
+    ParVTK->doAll();
+//    delete VTK;
+
+    cout << "Parallel VTK file is created." << '\n';
+
+}
 //void liberVisuXMF(string, string, string, string, int,int,int,int, char**, char**, float**, float*, float*, float*, int**);
 
 #endif

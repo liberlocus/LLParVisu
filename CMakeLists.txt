@@ -12,6 +12,15 @@ add_executable(maestro.x main.cpp)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}")
 
+find_package(MPI REQUIRED)
+if (MPI_FOUND)
+#  set(CMAKE_CXX_COMPILE_FLAGS ${CMAKE_CXX_COMPILE_FLAGS} ${MPI_COMPILE_FLAGS})
+#  set(CMAKE_CXX_LINK_FLAGS ${CMAKE_CXX_LINK_FLAGS} ${MPI_LINK_FLAGS})
+#  include_directories(${MPI_INCLUDE_DIRS})
+  include_directories(${MPI_INCLUDE_PATH})
+  target_link_libraries (maestro.x ${MPI_LIBRARIES})
+endif (MPI_FOUND)
+
 find_package(liberVisu REQUIRED)
 if (liberVisu_FOUND)
   include_directories(${liberVisu_INCLUDE_DIRS})
@@ -33,7 +42,7 @@ endif (VTK_FOUND)
 find_package(HDF5 1.8.6 REQUIRED)
 if (HDF5_FOUND)
   include_directories(${HDF5_INCLUDE_DIRS})
-  target_link_libraries (maestro.x ${HDF5_LIBRARIES})
+  target_link_libraries (maestro.x /usr/global/hdf5/1.8.6/lib/libhdf5_cpp.so ${HDF5_LIBRARIES})
 endif (HDF5_FOUND)
 
 ############## TESTING ###############
