@@ -1,3 +1,4 @@
+#include "liberVisu.h"
 #include "liberParVisu.h"
 #include "mpi.h"
 
@@ -14,9 +15,9 @@ int main(int argc, char **argv){
   MPI_Comm_rank(comm, &mpi_rank);
 
   const char *fileName = "mySolution" ;
-  char *gridName = "Unstructered" ;
-  char *gridType = "Uniform" ;
-  char *topoType = "Hexahedron" ;
+  const char *gridName = "Unstructered" ;
+  const char *gridType = "Uniform" ;
+  const char *topoType = "Hexahedron" ;
   int cellNum = 2;
   int nodePerCell = 8;//Hexahedron
   int nodeNum = 16;
@@ -275,11 +276,8 @@ int main(int argc, char **argv){
 
   /*define cell distribution among processors.*/
   
-//  liberOut(fileName,gridName, gridType,topoType, cellNum, nodePerCell,nodeNum,varSize, varName, varType, varMatrix,passed_x, passed_y, passed_z,cells,
-//  info, comm);
-  void liberParVisuVTK(string fileName, int nodeNum, float *x, float *y, float *z, int cellNum, int nodePerCell, int **cellConMatrix, char** varName, int varSize, float **varMatrix, int mpi_rank, int mpi_size);
+  liberParVisuVTK(fileName, nodeNum, passed_x, passed_y, passed_z, cellNum, nodePerCell, cells, varName, varSize, varMatrix, mpi_rank, mpi_size);
 
-//  writeParallelHDF5();
 //delete allocated arrays
   delete [] varMatrix;
   varMatrix=NULL;

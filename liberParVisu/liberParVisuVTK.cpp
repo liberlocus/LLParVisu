@@ -13,7 +13,6 @@ c_ParVTK::c_ParVTK(string fileName, int nodeNum, float *x, float *y, float *z, i
 //
 c_ParVTK::~c_ParVTK(){
 
-  
 // delete [] _x;
 // _x = NULL;
 //

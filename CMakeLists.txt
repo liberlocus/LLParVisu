@@ -7,14 +7,14 @@ set(Tutorial_VERSION_MINOR 0)
 #Name your project here
 project(maestro)
 
-add_definitions(-Wno-deprecated)
+add_definitions(-Wno-deprecated )
 add_executable(maestro.x main.cpp)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}")
 
 find_package(MPI REQUIRED)
 if (MPI_FOUND)
-#  set(CMAKE_CXX_COMPILE_FLAGS ${CMAKE_CXX_COMPILE_FLAGS} ${MPI_COMPILE_FLAGS})
+#3  set(CMAKE_CXX_COMPILE_FLAGS ${CMAKE_CXX_COMPILE_FLAGS} ${MPI_COMPILE_FLAGS})
 #  set(CMAKE_CXX_LINK_FLAGS ${CMAKE_CXX_LINK_FLAGS} ${MPI_LINK_FLAGS})
 #  include_directories(${MPI_INCLUDE_DIRS})
   include_directories(${MPI_INCLUDE_PATH})
@@ -23,14 +23,16 @@ endif (MPI_FOUND)
 
 find_package(liberVisu REQUIRED)
 if (liberVisu_FOUND)
+  message("serial found")
   include_directories(${liberVisu_INCLUDE_DIRS})
   target_link_libraries (maestro.x ${liberVisu_LIBRARIES})
 endif (liberVisu_FOUND)
 
 find_package(liberParVisu REQUIRED)
 if (liberParVisu_FOUND)
+  message("parallel found")
   include_directories(${liberParVisu_INCLUDE_DIRS})
-  target_link_libraries (maestro.x ${liberParVisu_LIBRARIES})
+  target_link_libraries (maestro.x ${liberParVisu_LIBRARIES} ${liberVisu_LIBRARIES})
 endif (liberParVisu_FOUND)
 
 find_package(VTK REQUIRED)
@@ -48,5 +50,5 @@ endif (HDF5_FOUND)
 ############## TESTING ###############
 ENABLE_TESTING()
 include(CTest)
-ADD_TEST(SimpleTest maestro.x)
-ADD_TEST(SimpleTest2 maestro.x)
+ADD_TEST(SimpleTest mpirun maestro.x)
+ADD_TEST(SimpleTest2 mpirun maestro.x)

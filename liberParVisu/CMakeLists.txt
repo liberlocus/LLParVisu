@@ -20,17 +20,18 @@ endif (HDF5_FOUND)
 include_directories("${CMAKE_SOURCE_DIR}")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}")
 
-find_package(liberVisu REQUIRED)
-if (liberVisu_FOUND)
+Find_package(liberVisu REQUIRED)
+If (liberVisu_FOUND)
+  message("parallel found serial")
   include_directories(${liberVisu_INCLUDE_DIRS})
   target_link_libraries (liberParVisu ${liberVisu_LIBRARIES})
-endif (liberVisu_FOUND)
+Endif (liberVisu_FOUND)
 
-set(CMAKE_BUILD_TYPE release)
-include_directories(.)
-install(DIRECTORY liberParVisu DESTINATION include FILES_MATCHING PATTERN *.h
-PATTERN .svn EXCLUDE)
-install(TARGETS liberParVisu DESTINATION lib)
+#set(CMAKE_BUILD_TYPE release)
+#include_directories(.)
+#install(DIRECTORY liberParVisu DESTINATION include FILES_MATCHING PATTERN *.h
+#PATTERN .svn EXCLUDE)
+#install(TARGETS liberParVisu DESTINATION lib)
 
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "LiberLocus Parallel Visualization Library")
 SET(CPACK_PACKAGE_VENDOR "LiberLocus")

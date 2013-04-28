@@ -58,15 +58,25 @@
 %\section{Introduction}
 
 \section{Introduction}
+\label{sec:intro}
 
-This is a documentation about the LiberLocus LLParVisu library.
+This is a documentation about the LiberLocus LLParVisu library. LLParVisu library is a library built upon LLVisu library. LLParVisu aims to bring parallel computing capability to the already existing capabilities in LLVisu.
+
+For detailed description regarding serial part of the LLParvisu please refer to the LLVisu manual. This document consists of only the parallel capabilities built upon LLVisu.
+
+The supported file formats are VTK\cite{VTK} and XDMF\cite{XDMF} (through HDF5\c
+ite{HDF5}). User can generate output data with one or multiple types simultaneou
+sly with the appropriate function calls.
+
+The installation procedure is completed with CMake\cite{CMake}. LLVisu must already be installed on the system as LLParVisu is built on top of LlVisu. Once installed, by including the appropriate header file in your code, functions can be called for output generation. Detailed explanation of these functions can be found in Section~\ref{sec:API}
+
+%\section{What is new in Version 2.0}
+%\label{sec:whatsnew}
 
 \newpage
 
-%\begingroup
-%    \fontsize{15pt}{10pt}\selectfont
-%    \begin{verbatim}  
-        % how to set font size here to 10 px ?  
+\section{LLParVisu API}
+\label{sec:API}
 
 \noindent {\large void {\bf liberParVisuVTK}(\newline \par {\it string}  fileName, {\it int}  nodeNum, {\it float}  *pos\_x, {\it float}  *pos\_y, {\it float}  *pos\_z, {\it int}  cellNum, {\it int}  nodePerCell, {\it int}  **cells, {\it char}  **varName, {\it int}  **varSize, {\it float}  **varMatrix, {\it int}  mpiRank \newline),  }
 \bigskip
@@ -162,16 +172,18 @@ This is a documentation about the LiberLocus LLParVisu library.
         
         {\bf mpiRank} \par processor id 
 
-        
-
-
-%  \begin{thebibliography}{1}
+  \begin{thebibliography}{1}
+  
+  \bibitem{VTK} Visualization Tool Kit, Page {\em http://www.vtk.org/}
+  \bibitem{XDMF} Extensible Data Model Format, Page {\em http://www.xdmf.org}
+  \bibitem{HDF5} Hierarchical Data Format Group, Page {\em http://www.hdfgroup.org/HDF5/}
+  \bibitem{CMake} Cross-platform, open-source build system, Page {\em http://www.cmake.org/}
 %
 %  \bibitem{wiki1} Sorting Algorithm Wikipedia, Page {\em http://en.wikipedia.org/wiki/Sorting\_algorithm}
 %  \bibitem{wiki2} Mergesort Wikipedia Page, {\em http://en.wikipedia.org/wiki/Merge\_sort}
 %  \bibitem{main} Atanas Radenski "{\em Shared Memory, Message Passing, and Hybrid Merge Sorts for Standalone and Clustered SMPs}"  International Conference on Parallel and Distributed Processing Techniques and Applications, 2011 pp. 367-373.
 %  \bibitem{sec} Jaeyoung Park, Kyong-Gun Lee and Jong Tae Kim "{\em Parallel Mergesort Implementation using OpenMP}" Proceedings of The 2011 World Congress in Computer Science, Computer Engineering and Applied Computing. "http://world-comp.org/p2011/PDP8400.pdf"
 %
-%  \end{thebibliography}
+  \end{thebibliography}
 
 \end{document}
