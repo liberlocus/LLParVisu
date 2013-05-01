@@ -22,7 +22,9 @@ void liberParVisuVTK(string fileName, int nodeNum, float *x, float *y, float *z,
     ParVTK->doAll();
 //    delete VTK;
 
-    cout << "Parallel VTK file is created." << '\n';
+    if(mpiRank == 0){
+      cout << "Parallel VTK file is created." << '\n';
+    }
 
 }
 
